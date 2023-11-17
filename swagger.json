@@ -1,0 +1,538 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Projeto 2 Web 2",
+        "description": "Documentação da API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8081"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Usuario",
+            "description": "Métodos dos Usuarios"
+        },
+        {
+            "name": "Post",
+            "description": "Métodos dos Posts"
+        },
+        {
+            "name": "Comentario",
+            "description": "Métodos dos Comentarios"
+        }
+    ],
+    "paths": {
+        "/usuarioCadastrar": {
+            "post": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Cadastra um Novo Usuário",
+                "description": "Cadastra um Novo Usuário usando um nome e um apelido.",
+                "requestBody": {
+                    "description": "Cadastra um Novo Usuário usando um nome e um apelido.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "nome": "teste nome",
+                                "apelido": "teste apelido"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "plain/text": {
+                                "example": "Usuario Cadastrado com Sucesso!"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/usuarioDeletar": {
+            "post": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Deleta um Usuário",
+                "description": "Deleta um Usuário usando o ID.",
+                "requestBody": {
+                    "description": "Deleta um Usuário usando o ID.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "successful operation, No Content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Usuario Deletado com Sucesso!"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/usuarioAtualizar": {
+            "post": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Atualiza um Usuário",
+                "description": "Atualiza um Usuário usando o ID e o novo dado.",
+                "requestBody": {
+                    "description": "Atualiza um Usuário usando o ID e o novo dado.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "id": 2,
+                                "nome": "teste"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "plain/text": {
+                                "example": "Usuario Atualizado com Sucesso!"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/usuariosList": {
+            "get": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Lista de Usuários",
+                "description": "Recebe uma lista com todos os Usuários",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "id": 1,
+                                        "nome": "teste nome",
+                                        "apelido": "teste apelido",
+                                        "createdAt": "2023-11-17T02:25:30.683Z",
+                                        "updatedAt": "2023-11-17T02:25:30.683Z"
+                                    },
+                                    {
+                                        "id": 2,
+                                        "nome": "teste nome 2",
+                                        "apelido": "teste apelido 2",
+                                        "createdAt": "2023-11-17T02:25:37.081Z",
+                                        "updatedAt": "2023-11-17T02:25:37.081Z"
+                                    },
+                                    {
+                                        "id": 3,
+                                        "nome": "teste nome 3",
+                                        "apelido": "teste apelido 3",
+                                        "createdAt": "2023-11-17T02:25:45.825Z",
+                                        "updatedAt": "2023-11-17T02:25:45.825Z"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getUsuario": {
+            "get": {
+                "tags": [
+                    "Usuario"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "name": "nome",
+                        "in": "query"
+                    },
+                    {
+                        "name": "apelido",
+                        "in": "query"
+                    }
+                ],
+                "summary": "Filtra Usuários",
+                "description": "Filtra Usuários usando ID, Nome ou Apelido.",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 1,
+                                    "nome": "teste nome",
+                                    "apelido": "teste apelido",
+                                    "createdAt": "2023-11-17T02:25:30.683Z",
+                                    "updatedAt": "2023-11-17T02:25:30.683Z"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/postCriar": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Cria um Novo Post",
+                "description": "Cria um Novo Post usando o ID do Usuario e o Conteúdo do Post.",
+                "requestBody": {
+                    "description": "Cria um Novo Post usando o ID do Usuario e o Conteúdo do Post.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "usuario": 1,
+                                "conteudo": "teste"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "plain/text": {
+                                "example": "Post Criado com Sucesso!"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/postDeletar": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Deleta um Post",
+                "description": "Deleta um Post usando o ID.",
+                "requestBody": {
+                    "description": "Deleta um Post usando o ID.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "successful operation, No Content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Post Deletado com Sucesso!"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/postCurtir": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Curte um Post",
+                "description": "Curte um Post usando o ID.",
+                "requestBody": {
+                    "description": "Curte um Post usando o ID.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "plain/text": {
+                                "example": "Post curtido com Sucesso!"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getPost": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "name": "usuario",
+                        "in": "query"
+                    }
+                ],
+                "summary": "Filtra Posts",
+                "description": "Filtra Posts usando ID, ou ID do Usuário.",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 1,
+                                    "conteudo": "teste 1",
+                                    "curtidas": 2,
+                                    "createdAt": "2023-11-17T02:26:03.209Z",
+                                    "updatedAt": "2023-11-17T02:34:51.387Z",
+                                    "idUsuario": 1
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comentarioCriar": {
+            "post": {
+                "tags": [
+                    "Comentario"
+                ],
+                "summary": "Cria um Novo Comentario",
+                "description": "Cria um Novo Comentario usando o ID do Usuario, o ID do Post e o Conteúdo do Comentario.",
+                "requestBody": {
+                    "description": "Cria um Novo Comentario usando o ID do Usuario, o ID do Post e o Conteúdo do Comentario.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "usuario": 1,
+                                "post": 1,
+                                "conteudo": "teste"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "plain/text": {
+                                "example": "Comentario Criado com Sucesso!"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comentarioDeletar": {
+            "post": {
+                "tags": [
+                    "Comentario"
+                ],
+                "summary": "Deleta um Comentario",
+                "description": "Deleta um Comentario usando o ID.",
+                "requestBody": {
+                    "description": "Deleta um Comentario usando o ID.",
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "id": 1
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "successful operation, No Content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Comentario Deletado com Sucesso!"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getComentario": {
+            "get": {
+                "tags": [
+                    "Comentario"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query"
+                    },
+                    {
+                        "name": "post",
+                        "in": "query"
+                    }
+                ],
+                "summary": "Filtra Comentarios",
+                "description": "Filtra Comentarios usando ID, ou ID do Post.",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": 1,
+                                    "conteudo": "teste1",
+                                    "createdAt": "2023-11-17T02:30:29.894Z",
+                                    "updatedAt": "2023-11-17T02:30:29.894Z",
+                                    "idPost": 1,
+                                    "idUsuario": 1
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "bad content",
+                        "content": {
+                            "plain/text": {
+                                "example": "Argumentos Invalidos"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/getPopulares": {
+            "get": {
+                "tags": [
+                    "Usuario"
+                ],
+                "summary": "Mostra os Usuários mais Populares",
+                "description": "Filtra Usuários por quantidade de Curtidas",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "example": [
+                                    {
+                                        "id": 2,
+                                        "curtidas": 4
+                                    },
+                                    {
+                                        "id": 1,
+                                        "curtidas": 2
+                                    },
+                                    {
+                                        "id": 3,
+                                        "curtidas": 0
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

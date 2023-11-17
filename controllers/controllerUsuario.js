@@ -2,28 +2,34 @@ const db = require('../config/db');
 module.exports = {
     async getList(req, res) {
         var usuarios = [];
-        db.Usuario.findAll().then(n => { res.send(n) }).catch((err) => { console.log(err) });
+        db.Usuario.findAll().then(n => { res.status(200).send(n) }).catch((err) => { console.log(err) });
     },
 
     async cadastro(req, res) {
-        db.Usuario.create({
-            nome: req.body.nome,
-            apelido: req.body.apelido,
-        }).then(() => {
-            res.status(200).send("Usuario Cadastrado com Sucesso!");
-        }).catch((err) => {
-            console.log(err);
-        });
+        if (req.body.nome && req.body.apelido) {
+            db.Usuario.create({
+                nome: req.body.nome,
+                apelido: req.body.apelido,
+            }).then(() => {
+                res.status(200).send("Usuario Cadastrado com Sucesso!");
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+        else { res.status(400).send("Argumentos Invalidos") }
     },
 
     async deletar(req, res) {
-        db.Usuario.destroy({
-            where: { id: req.body.id }
-        }).then(() => {
-            res.status(204).send("Usuario deletado com Sucesso!");
-        }).catch((err) => {
-            console.log(err);
-        });
+        if (req.body.id) {
+            db.Usuario.destroy({
+                where: { id: req.body.id }
+            }).then(() => {
+                res.status(204).send("Usuario deletado com Sucesso!");
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+        else { res.status(400).send("Argumentos Invalidos") }
     },
 
     async atualizar(req, res) {
